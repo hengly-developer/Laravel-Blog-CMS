@@ -1,22 +1,33 @@
 <div class="card">
-    <nav class="navbar" role="navigation" aria-label="main navigation">
+    <nav class="navbar has-shadow">
         <div class="container">
             <div class="navbar-brand">
-                <a class="navbar-item" href="https://bulma.io">
+                <a class="navbar-item is-paddingless brand-item" href="{{route('home')}}">
                 <img src="{{asset('images/logo.jpg')}}">
                 </a>
+                @if (Request::segment(1) == "manage")
+                  <a class="navbar-item is-hidden-desktop" id="admin-slideout-button">
+                    <span class="icon">
+                      <i class="fa fa-arrow-circle-right"></i>
+                    </span>
+                  </a>
+                @endif
+                <button class="button navbar-burger">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </button>
             </div>
-            <div id="navbarBasicExample" class="navbar-menu">
+            <div class="navbar-menu">
                 <div class="navbar-start">
-                    <a class="navbar-item">Learn</a>
-                    <a class="navbar-item">Discuss</a>
-                    <a class="navbar-item">Share</a>
+                    <a class="navbar-item is-tab is-active">Learn</a>
+                    <a class="navbar-item is-tab">Discuss</a>
+                    <a class="navbar-item is-tab">Share</a>
                 </div>
-                <div class="navbar-end">
-                    <div class="navbar-item">
+                <div class="navbar-end nav-menu" style="overflow: visible">
                         @guest
-                            <a href="{{route('login')}}" class="navbar-item">Login</a>
-                            <a href="{{route('register')}}" class="navbar-item">Join The Community</a>
+                            <a href="{{route('login')}}" class="navbar-item is-tab">Login</a>
+                            <a href="{{route('register')}}" class="navbar-item is-tab">Join The Community</a>
                         @else
                             <div class="navbar-item has-dropdown is-hoverable">
                                 <a class="navbar-link">Hi, {{ Auth::user()->name }}</a>
@@ -32,7 +43,6 @@
                                 </div>
                             </div>
                         @endguest
-                    </div>
                 </div>
             </div>
         </div>
