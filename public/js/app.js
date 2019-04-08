@@ -56808,6 +56808,13 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 
 Vue.use(buefy__WEBPACK_IMPORTED_MODULE_0___default.a); // Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+//
+// var app = new Vue({
+//     el: '#app',
+//     data:{}
+// });
+
+__webpack_require__(/*! ./manage */ "./resources/js/manage.js");
 
 /***/ }),
 
@@ -56833,6 +56840,36 @@ if (token) {
   window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
 } else {
   console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
+}
+
+/***/ }),
+
+/***/ "./resources/js/manage.js":
+/*!********************************!*\
+  !*** ./resources/js/manage.js ***!
+  \********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var accordions = document.getElementsByClassName('has-submenu');
+
+for (var i = 0; i < accordions.length; i++) {
+  accordions[i].onclick = function () {
+    this.classList.toggle('is-active');
+    var submenu = this.nextElementSibling;
+
+    if (submenu.style.maxHeight) {
+      // menu is open, we need to close it now
+      submenu.style.maxHeight = null;
+      submenu.style.marginTop = null;
+      submenu.style.marginBottom = null;
+    } else {
+      // menu is close, we need to open it now
+      submenu.style.maxHeight = submenu.scrollHeight + "px";
+      submenu.style.marginTop = "0.75em";
+      submenu.style.marginBottom = "0.75em";
+    }
+  };
 }
 
 /***/ }),
